@@ -17,7 +17,7 @@ public class LoginPage {
     By username = By.name("user-name");
     By password = By.name("password");
     By login_btn = By.name("login-button");
- //   By mensaje_usuariobloqueado = By.cssSelector("h3[data-test='error']");
+
     By mensaje_usuario_no_valido = By.cssSelector("h3[data-test='error']");
 
 

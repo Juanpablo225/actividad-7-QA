@@ -33,24 +33,36 @@ public class TestLogin {
     @Test
     public  void Login_test_valido() {
 
-
-
         login.login("standard_user", "secret_sauce");
 
         String url_esperada= "https://www.saucedemo.com/inventory.html";
 
         Assert.assertEquals(driver.getCurrentUrl(), url_esperada);
 
+    }
+
+    @Test
+    public  void Login_test_usuario_no_valido() {
+
+
+
+        login.login("", "secret_sauce");
+
+        String mensajeesperado = "Epic sadface: Username is required";
+
+        Assert.assertEquals(login.mensaje_usuario_erroneo(), mensajeesperado);
+
 
 
     }
 
+
     @Test
-    public  void Login_test_no_valido() {
+    public  void Login_test_contrasena_no_valido() {
 
 
 
-        login.login("gato", "secret_sauce");
+        login.login("standard_user", "gato");
 
         String mensajeesperado = "Epic sadface: Username and password do not match any user in this service";
 
@@ -59,6 +71,9 @@ public class TestLogin {
 
 
     }
+
+
+
 
     @Test
     public  void Login_test_usuario_bloqueado() {
@@ -70,6 +85,17 @@ public class TestLogin {
 
     }
 
+    @Test
+    public  void Login_test_vacio() {
+
+        login.login("", "");
+
+        String mensajeesperado = "Epic sadface: Username is required";
+
+        Assert.assertEquals(login.mensaje_usuario_erroneo(), mensajeesperado);
+
+
+    }
 
     //cierra navegador
     @AfterMethod
